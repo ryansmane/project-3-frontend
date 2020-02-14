@@ -14,8 +14,10 @@ const Home = props => {
   }, []);
 
   const getMovies = function() {
-    axios.get(url).then(res => setAllMovies(res));
-    console.log(allMovies);
+    axios.get(url).then(res => {
+      console.log(res.data);
+      setAllMovies(res.data);
+    });
   };
 
   //ordinarily, we would map from allMovies - but here we use dummy text
