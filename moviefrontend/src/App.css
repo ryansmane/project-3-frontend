@@ -7,3 +7,9 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.login-form {
+  padding-top: 8%;
+  margin: auto;
+  width: 16%
+}

@@ -1,7 +1,20 @@
 import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+
+const axios = require('axios');
+const url = ''
 
 const Home = props => {
+
+const [allMovies, setAllMovies] = useState([])
+
+//getting and setting all movies
+useEffect(() => {
+    axios.get(url).then(res => setAllMovies(res.data) )
+}, [])
+
+//ordinarily, we would map from allMovies - but here we use dummy text
   return (
     <div>
       <h1>Home</h1>
