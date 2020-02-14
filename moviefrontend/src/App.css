@@ -13,3 +13,22 @@
   margin: auto;
   width: 24%;
 }
+
+.title-submit {
+  width: 32%;
+  padding-left: 8%;
+  padding-top: 4%;
+}
+
+.synopsis-submit {
+  width: 56%;
+  padding-left: 8%;
+  padding-top: 1%;
+}
+
+.submission-button {
+  margin-left: 8%;
+  width: 8%;
+}
+
+

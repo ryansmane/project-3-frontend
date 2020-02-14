@@ -5,18 +5,23 @@ import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
 
 const Login = props => {
+
   const [credentials, setCredentials] = useState({});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  //redundancy needed to ensure credentials aren't empty
   useEffect(() => {
     const info = { email, password };
     setCredentials(info);
   }, [password]);
 
-  const getInfo = () => {
+  const getInfoAndValidate = () => {
     const info = { email, password };
     setCredentials(info);
+
+    //needs validation
+
   };
 
   return (
@@ -41,7 +46,8 @@ const Login = props => {
         <Button
           onClick={evt => {
             evt.preventDefault();
-            getInfo();
+            getInfoAndValidate();
+            
             console.log(credentials);
           }}
           variant="primary"
