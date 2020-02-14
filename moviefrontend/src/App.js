@@ -8,21 +8,21 @@ import { Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
-   return (
+  return (
+    <div>
       <div>
-         <div>
-            <HeaderContainer />
-         </div>
-         <main>
-            <Switch>
-               <Route exact path='/' component={Home} />
-               <Route exact path='/new' component={Create} />
-               <Movie />
-               <User />
-            </Switch>
-         </main>
+        <HeaderContainer />
       </div>
-   );
+      <main>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/new" component={Create} />
+          <Route exact path="/movie" component={Movie} />
+          <User />
+        </Switch>
+      </main>
+    </div>
+  );
 };
 
 export default App;

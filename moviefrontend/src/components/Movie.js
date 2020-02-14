@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const Movie = (props) => {
-    return (
-        <div>
-        </div>
-    )
-}
+const Movie = props => {
+  return (
+    <div>
+      <h2>Specific Movie</h2>
+    </div>
+  );
+};
 
 export default Movie;

@@ -3,3 +3,7 @@
   justify-content: space-evenly;
   border-bottom: 1px solid black;
 }
+.homeMain {
+  display: flex;
+  justify-content: space-evenly;
+}
