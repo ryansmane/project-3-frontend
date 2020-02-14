@@ -1,20 +1,24 @@
 import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 const axios = require('axios');
-const url = ''
 
 const Home = props => {
+  const [allMovies, setAllMovies] = useState([]);
 
-const [allMovies, setAllMovies] = useState([])
+  //getting and setting all movies
+  const url = 'http://localhost:8080/api/movies';
+  useEffect(() => {
+    getMovies();
+  }, []);
 
-//getting and setting all movies
-useEffect(() => {
-    axios.get(url).then(res => setAllMovies(res.data) )
-}, [])
+  const getMovies = function() {
+    axios.get(url).then(res => setAllMovies(res));
+    console.log(allMovies);
+  };
 
-//ordinarily, we would map from allMovies - but here we use dummy text
+  //ordinarily, we would map from allMovies - but here we use dummy text
   return (
     <div>
       <h1>Home</h1>
