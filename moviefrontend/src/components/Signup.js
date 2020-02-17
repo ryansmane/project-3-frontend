@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
@@ -9,12 +8,13 @@ const Login = props => {
    const [credentials, setCredentials] = useState({});
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
+   const [username, setUsername] = useState('');
 
    const getInfoAndValidate = () => {
-      const info = { email, password };
+      const info = { email, password, userName: username };
       setCredentials(info);
       axios
-         .post('http://localhost:8080/api/user/login', info)
+         .post('http://localhost:8080/api/user', info)
          .then(res => console.log(res))
          .catch(err => console.log(err));
 
@@ -24,6 +24,14 @@ const Login = props => {
    return (
       <div>
          <Form className='login-form'>
+            <Form.Group
+               onChange={evt => setUsername(evt.target.value)}
+               controlId='formBasicText'
+            >
+               <Form.Label>Username</Form.Label>
+               <Form.Control type='text' placeholder='Enter username' />
+               <Form.Text className='text-muted'></Form.Text>
+            </Form.Group>
             <Form.Group
                onChange={evt => setEmail(evt.target.value)}
                controlId='formBasicEmail'
@@ -50,9 +58,8 @@ const Login = props => {
                variant='primary'
                type='submit'
             >
-               Submit
+               Sign up
             </Button>
-         <Button variant='dark' href='/signup'>Sign Up</Button>
          </Form>
       </div>
    );
