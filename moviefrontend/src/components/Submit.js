@@ -8,18 +8,21 @@ const url = '';
 const Create = (props) => {
 	const [title, setTitle] = useState('');
 	const [plot, setPlot] = useState('');
-	const [genre, setGenre] = useState('');
+	const [genre, setGenre] = useState('Horror');
 
 	const postMovie = () => {
 		const newMovie = {
 			title,
 			synopsis: plot,
-			genre
+			genre,
+			createdBy: localStorage.id
 		};
 
 		axios
 			.post('http://localhost:8080/api/movies', newMovie)
-			.then((res) => console.log(res))
+			.then((res) => {
+				props.history.push('/');
+			})
 			.catch((err) => console.log(err));
 	};
 
