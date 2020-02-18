@@ -6,28 +6,30 @@ import User from './components/User';
 import Submit from './components/Submit';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import ViewAll from './components/ViewAll';
 import { Route, Link, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
-   return (
+  return (
+    <div>
       <div>
-         <div>
-            <HeaderContainer />
-         </div>
-         <main>
-            <Switch>
-               <Route exact path='/' component={Home} />
-               <Route exact path='/new' component={Submit} />
-               <Route exact path='/movie/:id' component={Movie} />
-               <Route exact path='/login' component={Login} />
-               <Route exact path='/signup' component={Signup} />
-               <User />
-            </Switch>
-         </main>
+        <HeaderContainer />
       </div>
-   );
+      <main>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/new" component={Submit} />
+          <Route exact path="/movie/:id" component={Movie} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/genre/:genre" component={ViewAll} />
+          <User />
+        </Switch>
+      </main>
+    </div>
+  );
 };
 
 export default App;
