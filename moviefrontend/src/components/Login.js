@@ -16,7 +16,7 @@ const Login = (props) => {
 		const info = { email, password };
 		setCredentials(info);
 		axios
-			.post('http://localhost:8080/api/user/login', info)
+			.post('https://cinopsis.herokuapp.com/api/user/login', info)
 			.then((res) => {
 				if (res.data.error) {
 					setError(res.data.error);

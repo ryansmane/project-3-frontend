@@ -19,7 +19,7 @@ const Create = (props) => {
 		};
 
 		axios
-			.post('http://localhost:8080/api/movies', newMovie)
+			.post('https://cinopsis.herokuapp.com/api/movies', newMovie)
 			.then((res) => {
 				props.history.push('/');
 			})

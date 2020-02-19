@@ -6,7 +6,7 @@ const HeaderContainer = (props) => {
 	return (
 		<div>
 			<nav className="nav-bar">
-				<h3>Movie App</h3>
+				<h3>cinopsis</h3>
 				<Link to="/">
 					<h3>Home</h3>
 				</Link>
