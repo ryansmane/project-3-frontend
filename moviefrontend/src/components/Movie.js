@@ -6,119 +6,152 @@ import { withRouter, Link } from 'react-router-dom';
 const axios = require('axios');
 
 const Movie = props => {
-  const url = `http://localhost:8080/api/movies/${props.match.params.id}`;
+   const url = `http://localhost:8080/api/movies/${props.match.params.id}`;
 
-  const [movieData, setMovieData] = useState();
-  const [rating, setRating] = useState(0);
+   const [movieData, setMovieData] = useState();
+   const [rating, setRating] = useState(0);
+   const [usersRating, setUsersRating] = useState();
 
-  useEffect(() => {
-    axios.get(url).then(res => {
-      console.log(res.data.movie.title);
-      setMovieData(res.data);
-      
-    });
-  }, []);
+   useEffect(() => {
+      axios.get(url).then(res => {
+         setMovieData(res.data);
+         let temp = res.data.movie.ratings.find(
+            rating => localStorage.id === rating.createdBy
+         );
+         setUsersRating(temp);
+      });
+   }, [usersRating]);
 
-  const postRating = () => {
-    const ratingInfo = { rating };
-    axios.post(url + '/rating', ratingInfo);
-    console.log(
-       movieData.movie.ratings.find(rating => localStorage.id === rating) ===
-          localStorage.id
-    );
-    
-  };
-  const deleteMovie = () => {
-     axios.delete(url).then((res) => props.history.push('/'))
-  }
+   const postRating = () => {
+      const ratingInfo = { rating, createdBy: localStorage.id };
+      axios.post(url + '/rating', ratingInfo);
+   };
+   const deleteMovie = () => {
+      axios.delete(url).then(res => props.history.push('/'));
+   };
 
-  return (
-     <div>
-        {movieData && (
-           <>
-              <h2>
-                 Title : <em>{movieData.movie.title}</em>
-              </h2>
-              <h4>
-                 Author:
-                 <Link to={`/user/${movieData._id}`}>
-                    {' '}
-                    {movieData.userName}
-                 </Link>
-              </h4>
-              <h3>
-                 Average Rating:{' '}
-                 {movieData.movie.ratings &&
-                    (movieData.movie.avgRating || 'No ratings yet!')}
-              </h3>
-              <h4>Synopsis</h4>
-              <p>{movieData.movie.synopsis}</p>
-              <Form>
-                 {!movieData.movie.ratings.find(
-                    rating => localStorage.id === rating
-                 ) && (
-                    <Form.Group controlId='exampleForm.ControlSelect1'>
-                       <Form.Label>Rate Movie</Form.Label>
-                       <Form.Control
-                          onChange={evt => setRating(evt.target.value)}
-                          className='genre-submit'
-                          as='select'
-                       >
-                          <option>0</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                          <option>6</option>
-                          <option>7</option>
-                          <option>8</option>
-                          <option>9</option>
-                          <option>10</option>
-                       </Form.Control>
-                    </Form.Group>
-                 )}
-                 {movieData.movie.ratings.find(
-                    rating => localStorage.id === rating
-                 ) && (
-                    <div>
-                       <p>You've already rated this film: 6</p>
-                       <Button
-                          
-                          variant='primary'
-                          type='submit'
-                       >
-                          Edit Rating
-                       </Button>
-                    </div>
-                 )}
-                 <Button
-                    onClick={evt => {
-                       evt.preventDefault();
-                       postRating();
-                    }}
-                    variant='primary'
-                    type='submit'
-                 >
-                    Submit Rating
-                 </Button>
-                 {localStorage.id === movieData.movie.createdBy && (
-                    <Button
-                       onClick={evt => {
-                          evt.preventDefault();
-                          deleteMovie();
-                       }}
-                       variant='danger'
-                       type='submit'
-                    >
-                       Delete Movie
-                    </Button>
-                 )}
-              </Form>
-           </>
-        )}
-     </div>
-  );
+   const editRating = () => {
+      const ratingInfo = { rating, createdBy: localStorage.id };
+      axios
+         .put(`http://localhost:8080/api/rating/${usersRating._id}`, ratingInfo)
+         
+   }
+
+   return (
+      <div>
+         {movieData && (
+            <>
+               <h2>
+                  Title : <em>{movieData.movie.title}</em>
+               </h2>
+               <h4>
+                  Author:
+                  <Link to={`/user/${movieData._id}`}>
+                     {' '}
+                     {movieData.userName}
+                  </Link>
+               </h4>
+               <h3>
+                  Average Rating:{' '}
+                  {movieData.movie.ratings.length > 0 &&
+                     Math.abs(movieData.movie.avgRating)}{!movieData.movie.ratings.length > 0 && 'No ratings yet!'}
+               </h3>
+               <h4>Synopsis</h4>
+               <p>{movieData.movie.synopsis}</p>
+               <Form>
+                  {!usersRating && (
+                     <Form.Group controlId='exampleForm.ControlSelect1'>
+                        <Form.Label>Rate Movie</Form.Label>
+                        <Form.Control
+                           onChange={evt => setRating(evt.target.value)}
+                           className='genre-submit'
+                           as='select'
+                        >
+                           <option>0</option>
+                           <option>1</option>
+                           <option>2</option>
+                           <option>3</option>
+                           <option>4</option>
+                           <option>5</option>
+                           <option>6</option>
+                           <option>7</option>
+                           <option>8</option>
+                           <option>9</option>
+                           <option>10</option>
+                        </Form.Control>
+                     </Form.Group>
+                  )}
+                  {usersRating && (
+                     <div>
+                        <span>
+                           You've already rated this film:
+                           </span>
+                              <Form.Group controlId='exampleForm.ControlSelect1'>
+                                 
+                                 <Form.Control
+                                  defaultValue={usersRating.rating}
+                                    onChange={evt =>
+                                       setRating(evt.target.value)
+                                    }
+                                    className='genre-submit'
+                                    as='select'
+                                 >
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                 </Form.Control>
+                              </Form.Group>
+                           
+                        
+                        <Button
+                           onClick={evt => {
+                              editRating();
+                           }}
+                           variant='primary'
+                           type='submit'
+                        >
+                           Edit Rating
+                        </Button>
+                     </div>
+                  )}
+                  {!usersRating && (
+                     <Button
+                        onClick={evt => {
+                           
+                           postRating();
+                        }}
+                        variant='primary'
+                        type='submit'
+                     >
+                        Submit Rating
+                     </Button>
+                  )}
+
+                  {localStorage.id === movieData.movie.createdBy && (
+                     <Button
+                        onClick={evt => {
+                           evt.preventDefault();
+                           deleteMovie();
+                        }}
+                        variant='danger'
+                        type='submit'
+                     >
+                        Delete Movie
+                     </Button>
+                  )}
+               </Form>
+            </>
+         )}
+      </div>
+   );
 };
 
 export default withRouter(Movie);
