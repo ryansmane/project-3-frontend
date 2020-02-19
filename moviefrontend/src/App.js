@@ -12,29 +12,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
-   return (
-      <div>
-         <div>
-            <HeaderContainer />
-         </div>
-         <main>
-            <Switch>
-               <Route exact path='/' component={Home} />
-               <Route exact path='/new' component={Submit} />
-               <Route exact path='/movie/:id' component={Movie} />
-               <Route exact path='/login' component={Login} />
-               <Route exact path='/signup' component={Signup} />
-               <Route exact path='/genre/:genre' component={ViewAll} />
-               <Route
-                  exact
-                  path='/user/:id'
-                  render={routerProps => <User match={routerProps} />}
-               />
-               <User />
-            </Switch>
-         </main>
-      </div>
-   );
+	return (
+		<div>
+			<div>
+				<HeaderContainer />
+			</div>
+			<main>
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route exact path="/new" component={Submit} />
+					<Route exact path="/movie/:id" component={Movie} />
+					<Route exact path="/login" component={Login} />
+					<Route exact path="/signup" component={Signup} />
+					<Route exact path="/genre/:genre" component={ViewAll} />
+					<Route exact path="/user/:id" component={User} />
+					<User />
+				</Switch>
+			</main>
+		</div>
+	);
 };
 
 export default App;
