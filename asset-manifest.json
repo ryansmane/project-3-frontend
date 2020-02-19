@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/project-3-frontend/static/css/main.7cf24212.chunk.css",
+    "main.js": "/project-3-frontend/static/js/main.9fb484de.chunk.js",
+    "main.js.map": "/project-3-frontend/static/js/main.9fb484de.chunk.js.map",
+    "runtime-main.js": "/project-3-frontend/static/js/runtime-main.1c8e83d2.js",
+    "runtime-main.js.map": "/project-3-frontend/static/js/runtime-main.1c8e83d2.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/project-3-frontend/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.7563421f.chunk.js": "/project-3-frontend/static/js/2.7563421f.chunk.js",
+    "static/js/2.7563421f.chunk.js.map": "/project-3-frontend/static/js/2.7563421f.chunk.js.map",
+    "index.html": "/project-3-frontend/index.html",
+    "precache-manifest.d518b7e99f81e5766e2dda8682c35c00.js": "/project-3-frontend/precache-manifest.d518b7e99f81e5766e2dda8682c35c00.js",
+    "service-worker.js": "/project-3-frontend/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/project-3-frontend/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.7cf24212.chunk.css.map": "/project-3-frontend/static/css/main.7cf24212.chunk.css.map",
+    "static/js/2.7563421f.chunk.js.LICENSE.txt": "/project-3-frontend/static/js/2.7563421f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1c8e83d2.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.7563421f.chunk.js",
+    "static/css/main.7cf24212.chunk.css",
+    "static/js/main.9fb484de.chunk.js"
+  ]
+}
