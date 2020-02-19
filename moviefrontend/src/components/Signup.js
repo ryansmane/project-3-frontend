@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 const axios = require('axios');
 
 const Login = (props) => {

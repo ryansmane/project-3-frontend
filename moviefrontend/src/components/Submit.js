@@ -1,9 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 const axios = require('axios');
-const url = '';
 
 const Create = (props) => {
 	const [title, setTitle] = useState('');
