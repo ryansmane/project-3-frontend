@@ -2,6 +2,7 @@
 
 https://github.com/pjl4/moviesBackend
 
-## Details:
+## Deployed:
 
-Project is in-progress. Details will be added after deployment. 
+https://pjl4.github.io/moviesFrontend/
+
